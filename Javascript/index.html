@@ -2,20 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>POGGERS</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.25.2.min.js" charset="utf-8"></script>
     <script src="https://unpkg.com/vue@next"></script>
 </head>
 
 <body>
     <div id="app">
-        <input v-model="word" type="text" id="Type a word">
-        <button type="button" @click="Save">Save</button>
-        <button type="button" @click="Show">Show</button>
-        <button type="button" @click="Clear">Clear</button> 
-        <div>
-            <a v-if="words.length==0">empty</a>
-            <a v-else>{{wordDisplay}}</a>
+
+        <div class="header">
+            <div class="frontpage" @click="IntoFrontpage">
+                Forside
+            </div>
+            <div class="otherpages" @click="IntoPage1">
+                Mit El
+            </div>
+            <div class="otherpages" @click="IntoPage2">
+                Elfællesskab
+            </div>
+            <div class="userpage" @click="IntoUserpage">
+                Bruger
+            </div>
         </div>
+
+        <div class="page" v-if="Frontpage">
+            FRONTPAGE
+        </div>
+
+        <div class="page" v-if="Page1">
+            <button type="button" @click="Pie">PIE</button>
+            <div id="pieChart" style="width:100%;max-width:700px;height:700px"></div>
+        </div>
+
+        <div class="page" v-if="Page2">
+            <button type="button" @click="Line">LINE</button>
+            <div id="lineChart" style="width:100%;max-width:700px;height:700px"></div>
+        </div>
+
+        <div class="page" v-if="Userpage">
+            USER STUFF
+        </div>
+
     </div>
 
     <script src="js/index.js"></script>

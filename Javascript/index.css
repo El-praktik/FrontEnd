@@ -1,0 +1,45 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    }
+.header{
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    width:100%;
+    background-color: #2596be;
+    overflow: auto;
+}
+.frontpage{
+    float: left;
+    padding: 30px;
+    margin-left: 10%;
+    width: 8%;
+    font-size: larger;
+}
+.frontpage:hover{
+    background-color: #58a9c7;
+}
+.otherpages{
+    float: left;
+    padding: 30px;
+    width: 8%;
+    font-size: larger;
+}
+.otherpages:hover{
+    background-color: #58a9c7;
+}
+.userpage{
+    float: right;
+    padding: 30px;
+    margin-right: 10%;
+    width: 8%;
+    font-size: larger;
+}
+.userpage:hover{
+    background-color: #58a9c7;
+}
+.page{
+    margin:1%;
+}
