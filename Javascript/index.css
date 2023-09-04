@@ -11,6 +11,18 @@ html, body {
     background-color: #2596be;
     overflow: auto;
 }
+.Elpristext{
+    float: left;
+    background-color: #2596be;
+    padding: 1%;
+    margin-top: 8%;
+    margin-left: 2%;
+    width: 30%;
+}
+.Elprisgraph{
+    float: left;
+    width: 40%;
+}
 .frontpage{
     float: left;
     padding: 30px;
