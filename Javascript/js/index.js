@@ -70,7 +70,7 @@ const app = Vue.createApp({
             this.Page1 = false,
             this.Page2 = false,
             this.Userpage = false
-            setTimeout(function() { document.getElementById("PieBTN").click(); }, 1);
+            setTimeout(function() { document.getElementById("LineBTN").click(); }, 1);
         },
         IntoPage1(){
             this.Frontpage = false,
