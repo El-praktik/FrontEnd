@@ -6,28 +6,46 @@ const app = Vue.createApp({
             Page1: false,
             Page2: false,
             Userpage: false,
-            ElmålerIds: [1, 2, 3],
-            ElmålerVærdier: [56, 34, 19],
             PieData: [],
+            PieData2: [],
             ElPriser: [],
             Timer: [],
             LineData: [],
-            CurrentDate: "",
-            ValueChange: 0
+            CurrentValue: "",
+            ValueChange: 0,
+            Apartment: {
+                AId: 1,
+                PowerUsedLastMonth: 900,
+                PowerUsedCurrentMonth: 280,
+                CId: 1,
+                BId: 1,
+            },
+            Block: {
+                BId: 1,
+                PowerUsedLastMonth: 8604,
+                PowerUsedCurrentMonth: 3174,
+                PowerGenerated: null,
+                CId: 1
+            },
+            Community: {
+                CId: 1,
+                PowerUsedLastMonth: 30346,
+                PowerUsedCurrentMonth: 12964,
+                PowerGenerated: null
+            }
         }
     },
     created(){
         const randomnum = this.getRandomIntInclusive(20, 28)
         const StartValue = randomnum/10
-        this.ElPriser.push(StartValue)
         for (let i = 0; i < 24; i++) {
             const NewDate = new Date()
-            NewDate.setSeconds(0)
-            NewDate.setMinutes(0)
             const temp = NewDate.getHours()
-            NewDate.setHours(temp-24+i)
-            this.CurrentDate = NewDate.toLocaleString()
-            this.Timer.push(this.CurrentDate)
+            NewDate.setHours(temp-23+i)
+            const Hour = NewDate.getHours()
+            const HourPlus = NewDate.getHours()+1
+            const HourRange = Hour + "‒" + HourPlus
+            this.Timer.push(HourRange)
 
             const randomnum = this.getRandomIntInclusive(-10, 10)
             this.ValueChange += randomnum/10
@@ -37,13 +55,23 @@ const app = Vue.createApp({
             else if (StartValue + this.ValueChange <= 1.3){
                 this.ValueChange = 1.3 - StartValue
             }
+
             this.ElPriser.push(StartValue + this.ValueChange)
+            this.CurrentValue = (StartValue + this.ValueChange).toFixed(1)
+
         }
         console.log(this.Timer)
         this.PieData.push(
             {
-                labels: this.ElmålerIds,
-                values: this.ElmålerVærdier,
+                labels: ["You", "Rest of the Block"],
+                values: [this.Apartment.PowerUsedCurrentMonth, this.Block.PowerUsedCurrentMonth],
+                type: "pie"
+            }
+        )
+        this.PieData2.push(
+            {
+                labels: ["You", "Rest of the Community"],
+                values: [this.Apartment.PowerUsedCurrentMonth, this.Community.PowerUsedCurrentMonth],
                 type: "pie"
             }
         )
@@ -78,6 +106,7 @@ const app = Vue.createApp({
             this.Page1 = true,
             this.Page2 = false,
             this.Userpage = false
+            setTimeout(function() { document.getElementById("PieBTN").click(); }, 1);
         },
         IntoPage2(){
             this.Frontpage = false,
@@ -95,9 +124,18 @@ const app = Vue.createApp({
         },
         Pie(){
             Plotly.newPlot("pieChart", this.PieData)
+            Plotly.newPlot("pieChart2", this.PieData2)
         },
         Line(){
-            Plotly.newPlot("lineChart", this.LineData)
+            Plotly.newPlot("lineChart", this.LineData, {
+                title: "Elpriser for sidste 24 timer",
+                xaxis:{
+                    title: "Timeinterval"
+                },
+                yaxis:{
+                    title: "kr./kWh"
+                }
+            })
         },
         getRandomIntInclusive(min, max) {
             min = Math.ceil(min)
