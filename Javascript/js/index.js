@@ -114,12 +114,16 @@ const app = Vue.createApp({
             this.Userpage = true
         },
         Pie(){
-            Plotly.newPlot("pieChart", this.PieData)
-            Plotly.newPlot("pieChart2", this.PieData2)
+            Plotly.newPlot("pieChart", this.PieData, {                
+                plot_bgcolor: "rgba(0, 0, 0, 0)",
+                paper_bgcolor: "rgba(0, 0, 0, 0)"})
+            Plotly.newPlot("pieChart2", this.PieData2, {                
+                plot_bgcolor: "rgba(0, 0, 0, 0)",
+                paper_bgcolor: "rgba(0, 0, 0, 0)"})
             this.PieUpdate()
         },
         PieUpdate(){
-            Plotly.restyle("pieChart", {"values": [[this.lastMonthUsage, this.lastMonthUsageBlock]]})
+            Plotly.restyle("pieChart", {"values": [[this.lastMonthUsage, this.lastMonthUsageBlock]]}),
             Plotly.restyle("pieChart2", {"values": [[this.lastMonthUsage, this.lastMonthUsageCommunity]]})
         },
         Line(){
@@ -130,7 +134,9 @@ const app = Vue.createApp({
                 },
                 yaxis:{
                     title: "kr./kWh"
-                }
+                },
+                plot_bgcolor: "rgba(0, 0, 0, 0)", // Set to transparent
+                paper_bgcolor: "rgba(0, 0, 0, 0)" // Adjust the desired 
             })
         },
         getRandomIntInclusive(min, max) {
