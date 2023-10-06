@@ -13,29 +13,20 @@ const app = Vue.createApp({
             LineData: [],
             CurrentValue: "",
             ValueChange: 0,
-            Apartment: {
-                AId: 1,
-                PowerUsedLastMonth: 900,
-                PowerUsedCurrentMonth: 280,
-                CId: 1,
-                BId: 1,
-            },
-            Block: {
-                BId: 1,
-                PowerUsedLastMonth: 8604,
-                PowerUsedCurrentMonth: 3174,
-                PowerGenerated: null,
-                CId: 1
-            },
-            Community: {
-                CId: 1,
-                PowerUsedLastMonth: 30346,
-                PowerUsedCurrentMonth: 12964,
-                PowerGenerated: null
-            }
+            lastMonthPrice: 0,
+            currentMonthUsage: 0,
+            lastMonthUsage: 0,
+            lastMonthUsageBlock: 0,
+            lastMonthUsageCommunity: 0
         }
     },
     created(){
+        this.getMonthPrice()
+        this.getCurrentMonthUsage()
+        this.getLastMonthUsage()
+        this.getLastMonthUsageBlock()
+        this.getLastMonthUsageCommunity()
+
         const randomnum = this.getRandomIntInclusive(20, 28)
         const StartValue = randomnum/10
         for (let i = 0; i < 24; i++) {
@@ -63,15 +54,15 @@ const app = Vue.createApp({
         console.log(this.Timer)
         this.PieData.push(
             {
-                labels: ["You", "Rest of the Block"],
-                values: [this.Apartment.PowerUsedCurrentMonth, this.Block.PowerUsedCurrentMonth],
+                labels: ["Dig", "Resten af blokken"],
+                values: [0, 0],
                 type: "pie"
             }
         )
         this.PieData2.push(
             {
-                labels: ["You", "Rest of the Community"],
-                values: [this.Apartment.PowerUsedCurrentMonth, this.Community.PowerUsedCurrentMonth],
+                labels: ["Dig", "Resten af fællesskabet"],
+                values: [0, 0],
                 type: "pie"
             }
         )
@@ -125,6 +116,11 @@ const app = Vue.createApp({
         Pie(){
             Plotly.newPlot("pieChart", this.PieData)
             Plotly.newPlot("pieChart2", this.PieData2)
+            this.PieUpdate()
+        },
+        PieUpdate(){
+            Plotly.restyle("pieChart", {"values": [[this.lastMonthUsage, this.lastMonthUsageBlock]]})
+            Plotly.restyle("pieChart2", {"values": [[this.lastMonthUsage, this.lastMonthUsageCommunity]]})
         },
         Line(){
             Plotly.newPlot("lineChart", this.LineData, {
@@ -141,6 +137,46 @@ const app = Vue.createApp({
             min = Math.ceil(min)
             max = Math.floor(max)
             return Math.floor(Math.random() * (max - min + 1) + min)
-          }
+        },
+        async getMonthPrice(){
+            const result = await fetch(`http://localhost:5293/CurrentPrize/1&&-1`, {
+                method: 'GET'
+            })
+            const data = await result.json()
+            this.lastMonthPrice = data.toFixed(2)
+            console.log(data)
+        },
+        async getCurrentMonthUsage(){
+            const result = await fetch(`http://localhost:5293/CurrentMonth/1`, {
+                method: 'GET'
+            })
+            const data = await result.json()
+            this.currentMonthUsage = data.toFixed(2)
+            console.log(data)
+        },
+        async getLastMonthUsage(){
+            const result = await fetch(`http://localhost:5293/LastMonth/1`, {
+                method: 'GET'
+            })
+            const data = await result.json()
+            this.lastMonthUsage = data.toFixed(2)
+            console.log(data)
+        },
+        async getLastMonthUsageBlock(){
+            const result = await fetch(`http://localhost:5293/LastMonthBlock/1`, {
+                method: 'GET'
+            })
+            const data = await result.json()
+            this.lastMonthUsageBlock = data.toFixed(2)
+            console.log(data)
+        },
+        async getLastMonthUsageCommunity(){
+            const result = await fetch(`http://localhost:5293/AllLast`, {
+                method: 'GET'
+            })
+            const data = await result.json()
+            this.lastMonthUsageCommunity = data.toFixed(2)
+            console.log(data)
+        }
     }
 })

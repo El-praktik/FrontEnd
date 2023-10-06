@@ -11,7 +11,6 @@
 
 <body>
     <div id="app">
-
         <div class="header">
             <div class="frontpage" @click="IntoFrontpage">
                 Forside
@@ -46,6 +45,20 @@
         <div class="page" v-if="Page1">
             
             <button hidden id="PieBTN" type="button" @click="Pie">PIE</button>
+            <button hidden id="PriceBTN" type="button" @click="getMonthPrice">PRICE</button>
+
+            <div>
+
+                <div class="elInfo">
+                    Aktuel pris for forrige måneds elforbrug
+                    <div class="KwH">{{lastMonthPrice}} kr.</div>
+                </div>
+                <div class="elInfo">
+                    Nuværende måneds samlagte kilowatt forbrug
+                    <div class="KwH">{{currentMonthUsage}} kW</div>
+                </div>
+            </div>
+            <div class="KwH">Kilowatt brugt forrige måned:</div>
             <div class="Pies" id="pieChart" style="width:100%;max-width:600px;height:auto"></div>
             <div class="Pies" id="pieChart2" style="width:100%;max-width:600px;height:auto"></div>
 

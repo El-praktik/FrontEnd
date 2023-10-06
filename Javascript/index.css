@@ -64,3 +64,18 @@ html, body {
 .page{
     margin:1%;
 }
+.KwH{
+    font-size: larger;
+    text-align: center;
+}
+.elInfo{
+    float: left;
+    width: 16%;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 2%;
+    background-color: #ff7f0e;
+}
