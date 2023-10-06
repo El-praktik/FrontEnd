@@ -2,35 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>POGGERS</title>
+    <title>BSS Electricity Meter</title>
     <link rel="stylesheet" href="index.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.25.2.min.js" charset="utf-8"></script>
     <script src="https://unpkg.com/vue@next"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
     <div id="app">
         <div class="header">
-            <div class="frontpage" @click="IntoFrontpage">
-                Forside
+            <div class="header-logo">
+                <img src="media/NORMAL_RGB_bosj_bigsize.png">
             </div>
-            <div class="otherpages" @click="IntoElprispage">
-                Elpriser
+            <div class="nav-toggle">
+                <i class="bx bx-menu"></i>
             </div>
-            <div class="otherpages" @click="IntoPage1">
-                Mit El
-            </div>
-            <div class="otherpages" @click="IntoPage2">
-                Elfællesskab
-            </div>
-            <div class="userpage" @click="IntoUserpage">
-                Bruger
-            </div>
+            <nav class="navbar">
+                <div class="listed-pages">
+                    <ul>
+                        <li class="frontpage" @click="IntoFrontpage">
+                            Forside
+                        </li>
+                        <li class="otherpages" @click="IntoElprispage">
+                            Elpriser
+                        </li>
+                        <li class="otherpages" @click="IntoPage1">
+                            Mit El
+                        </li>
+                        <li class="Otherpages" @click="IntoPage2">
+                            Elfællesskab
+                        </li>
+                        <li class="Bruger" @click="IntoUserpage">
+                            Bruger
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
 
         <div class="page" v-if="Frontpage">
-            insert fluff here
+            <div class ="page-content"style="border: 1px solid">
+                <div class="card-header">
+                     <h1>
+                        For en overskuelig fremtid
+                    </h1>
+                </div>
+                <div class="card-content">
+                     <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pharetra venenatis magna, at pulvinar leo cursus nec. In in vehicula neque, a ultricies velit. Pellentesque vitae mi sed lectus euismod consequat nec id ante. Fusce posuere tellus at quam tincidunt finibus. Curabitur nec faucibus est. Proin posuere neque id ex mattis varius. Nunc magna libero, scelerisque eget ex semper, elementum egestas mi. 
+                    </p>
+                </div>
+            </div>  
         </div>
 
         <div class="page" v-if="Elprispage">

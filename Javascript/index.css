@@ -1,16 +1,35 @@
-html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    }
-.header{
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    width:100%;
-    background-color: #2596be;
-    overflow: auto;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@30;400;500;600;700;family=Poppins:wght@30;400;500;600;700;800;900&display=swap");
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
+
+
+html, body {
+    min-height: 100svh;
+    background: url('media/Flat_Offices.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+
+.header {
+    height: 100px;
+    width: 100%;
+    padding: 1.3rem 8%;
+    background: rgba(0, 0, 0, .1);
+    backdrop-filter: blur(50px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+}
+
+
 .Elpristext{
     float: left;
     background-color: #2596be;
@@ -78,4 +97,109 @@ html, body {
     margin-right: 15%;
     padding: 2%;
     background-color: #ff7f0e;
+}
+
+.header-logo {
+    height: 50px;
+}
+
+.header-logo img {
+    height: 100%;
+}
+
+.navbar {
+    font-size: 1.15rem;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    z-index: 1000;
+}
+
+.nav-toggle{
+    display: none;
+}
+
+
+@media (max-width: 45em) {
+    .navbar{
+        position: fixed;
+        inset: 0 0 0 30%;
+    }
+
+    .navbar ul {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .nav-toggle{
+        display: flex;
+        justify-content: space-between;
+        z-index: 1000;
+    }
+
+    .nav-toggle i {
+        justify-content: soa;
+        cursor: pointer;
+        font-size: 35px;
+    }
+
+    .listed-pages{
+        margin-top: 100px;
+        background: rgba(0, 0, 0, .1);
+        backdrop-filter: blur(2rem);
+        z-index: 1000;
+    }
+
+}
+
+.listed-pages ul {
+    list-style-type: none;
+    display: flex;
+}
+
+.listed-pages li {
+    margin-right: 20px;
+}
+
+.page h1{
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.page {
+    margin: 50px;
+    z-index: 50;
+}
+
+.card-header, .card-content {
+    z-index: 50;
+}
+
+.page-content {
+    background-color: rgba(212, 212, 212, 0.4);
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 202px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    width: 75%;
+}
+
+.card-header {
+    padding: 10px;
+    border-radius: 5px 5px 0 0; 
+    border-bottom: 1px solid;
+    z-index: 50;
+}
+
+.card-header h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.card-content {
+    padding: 10px;
 }
