@@ -32,7 +32,7 @@ html, body {
 
 .Elpristext{
     float: left;
-    background-color: #2596be;
+    background-color: #ff7f0e;
     padding: 1%;
     margin-top: 10%;
     margin-left: 2%;
@@ -51,7 +51,7 @@ html, body {
 .Pies{
     float: left;
 }
-.frontpage{
+/* .frontpage{
     float: left;
     padding: 30px;
     margin-left: 10%;
@@ -82,7 +82,7 @@ html, body {
 }
 .page{
     margin:1%;
-}
+} */
 .KwH{
     font-size: larger;
     text-align: center;
@@ -149,6 +149,7 @@ html, body {
         background: rgba(0, 0, 0, .1);
         backdrop-filter: blur(2rem);
         z-index: 1000;
+        display: none;
     }
 
 }
